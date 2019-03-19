@@ -1,26 +1,32 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { ToastContainer } from 'react-toastify';
+import { Provider } from 'react-redux';
+import { ConnectedRouter } from 'connected-react-router';
+import { Route, Switch } from 'react-router-dom';
+import store, { history } from 'store';
+import UserRoleManagementPage from 'components/containers/UserRoleManagementPage';
+import Background from 'components/basic/container';
+import { createGlobalStyle } from 'styled-components';
+
+createGlobalStyle`
+    https://fonts.googleapis.com/css?family=Raleway:100|Yantramanav:100
+`;
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <Provider store={store} className="App">
+        <Background>
+          <ToastContainer/>
+          <ConnectedRouter history={history}>
+            <>
+              <Switch>
+              <Route exact path="/" component={UserRoleManagementPage} />
+              </Switch>
+            </>
+          </ConnectedRouter>
+        </Background>
+      </Provider>
     );
   }
 }
