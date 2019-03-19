@@ -1,68 +1,66 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## DEMO
+https://kexinlu.github.io
 
-## Available Scripts
+## Analysis
+This setup is an overkill to fulfil what was required, but it is a good demonstration of what I believe to be a good event driven UI data flow.
+All interaction between user and redux store are spawned by events, handled either directly by reducer or by redux-saga then reducer.
+Sagas are acting as middle layers between reducer and events. 
+Sagas also invoke events. 
+Sagas are able to handle the "anti-patterns" for reducers since reducers should not have side effect.
+All data are retrieved through reselect.
 
-In the project directory, you can run:
+## Structure of general flow of data
+-> user interactions with react components dispatching actions.
+-> redux-saga listens for action events and handle async actions with events.
+-> redux reducers handles events and manipulate redux store.
+-> reselect is responsible to retrieve data from redux store, filtering also happens in reselect.
+-> react component display values supplied by reselect.
 
-### `npm start`
+redux-saga is also used for daemon behaviours if required.
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## What could be improved
+- Test coverage was intentionally left on a low due to time limit to implement the data flow.
+- This setup is using a bootstrap I created sometime ago. In that bootstrap High Order Component was used to simply CRUD of entities, it was simplified in this demo.
+- TypeScript and ImmutableJS should be used.
+- Context was not used due to redux.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+With my previous experience, I realized that handling millions of data point and graphing with Redux could have heavy impact on browser's performance if stored data are not being cleaned correctly constantly. And it is very important to use react lifecycle functions to determine if the entire view should be updated.
 
-### `npm test`
+If starting a new project today, I would go with graphql and only load necessary data into redux.
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Library Used
+## Important Libraries
 
-### `npm run build`
+styled-components: Enables stylings with props on the fly.
+antd: Enterprise level component library includes almost everything we need right out of the box.
+antd-mobile: Less developed than antd, but is mobile-first. Some of the elements are used to replace antd elements to ensure mobile first.
+redux-saga: Simply better solution than redux-thunk. Event driven. 
+styled-components: Style components on the fly, enabling us to style components with props.
+reselect: Memoized selectors, save computation when things are not changed.
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Core Libraries
+react
+redux
+redux-saga
+react-redux
+react-router
+connected-react-router (replacemeng for react-router-redux)
+reselect
+antd
+antd-mobile
+styled-components
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+### Other Libraries
+moment JS - For time and timezone related
+less - For antd and antd-mobile theme
+normalizr - to flatten data (Not used in demo) 
+react-app-rewired - to override webpack config without eject
+Yarn - for the Lock
+Eslint - Airbnb Standard for code style
+Jest, Babel-Jest - for unit testing
+sinon - for mocking ( Not used in this code sample but is used in real life project )
+axios - for rest communication ( Not used )
+enzyme - for testing rendering ( Not used in this demo)
+classnames - for programmatically change class name ( Not used )
+lodash - utility ( Not used )
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
