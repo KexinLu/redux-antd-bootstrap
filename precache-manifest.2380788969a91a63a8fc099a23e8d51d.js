@@ -16,7 +16,7 @@ self.__precacheManifest = [
     "url": "/virgil-ui/static/js/2.36e46c87.chunk.js"
   },
   {
-    "revision": "8e7b851e44b14c5ce9d2c13b4a2b1c54",
+    "revision": "fd01e781dce935755bcefbe333d7cd6b",
     "url": "/virgil-ui/index.html"
   }
 ];

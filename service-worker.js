@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/virgil-ui/precache-manifest.30085b42dccfbb10587bc3bee0ad5b24.js"
+  "/virgil-ui/precache-manifest.2380788969a91a63a8fc099a23e8d51d.js"
 );
 
 workbox.clientsClaim();
