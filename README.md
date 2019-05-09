@@ -1,13 +1,3 @@
-## DEMO
-https://kexinlu.github.io
-
-## Analysis
-This setup is an overkill to fulfil what was required, but it is a good demonstration of what I believe to be a good event driven UI data flow.
-All interaction between user and redux store are spawned by events, handled either directly by reducer or by redux-saga then reducer.
-Sagas are acting as middle layers between reducer and events. 
-Sagas also invoke events. 
-Sagas are able to handle the "anti-patterns" for reducers since reducers should not have side effect.
-All data are retrieved through reselect.
 
 ## Structure of general flow of data
 -> user interactions with react components dispatching actions.
