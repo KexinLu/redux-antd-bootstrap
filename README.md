@@ -14,10 +14,6 @@ redux-saga is also used for daemon behaviours if required.
 - TypeScript and ImmutableJS should be used.
 - Context was not used due to redux.
 
-With my previous experience, I realized that handling millions of data point and graphing with Redux could have heavy impact on browser's performance if stored data are not being cleaned correctly constantly. And it is very important to use react lifecycle functions to determine if the entire view should be updated.
-
-If starting a new project today, I would go with graphql and only load necessary data into redux.
-
 ## Library Used
 ## Important Libraries
 
